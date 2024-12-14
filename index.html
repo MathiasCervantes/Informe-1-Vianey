@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de inscripcion para seminario de procesamiento de lenguaje natural</title>
+    <script>
+        function formulario(event){
+            event.preventDefault();
+            //Asignar valor
+            var genero = document.querySelector('input[name="genero"]:checked').value;
+            var nombres = document.getElementById("nombres").value;
+            var apellidos = document.getElementById("apellidos").value;
+            var dni = document.getElementById("dni").value;
+            var nacionalidad = document.getElementById("nacionalidad").value;
+            var edad = parseInt(document.getElementById("edad").value);
+
+            //Rechazar si no es de nacionalidad Peruana.
+            var NacioLow = nacionalidad.toLowerCase();
+            
+            if(NacioLow !== "peruana" && NacioLow !== "peruano" && NacioLow !== "perú" && NacioLow !== "peru") {
+                alert("Usted no es de nacionalidad Peruana.");
+                return
+            }
+
+            //Verificar si es mayor de edad + Mensaje de que si aprobo o no.
+            if (edad >= 18) {
+                var HoM = (genero === "hombre") ? "Sr." : "Sra.";
+                alert("Felicidades, " + HoM + " " + apellidos.split(" ")[0] + " , Usted fue aceptado.")
+            } else {
+                alert("Lo sentimos. Usted es menor de edad, por ende fue rechazado.")
+            }
+        }
+    </script>
+</head>
+<body>
+    <form method="POST" onsubmit="formulario(event)">
+    <h1>Formulario de inscripcion para seminario de procesamiento de lenguaje natural<h1>
+    
+    <p>Completar el formmulario correctamente</p>
+    <br>
+
+    <p>Ingresa tus nombres</p>
+    <input type="text" id="nombres" placeholder="Ingresar sus nombres..." minlength="3" maxlength="20" required="">
+    <br>
+    <br>
+
+    <p>Ingresa tus apellidos</p>
+    <input type="text" id="apellidos" placeholder="Ingresar tus apellidos..." minlength="3" maxlength="30" required="">
+    <br>
+    <br>
+
+    <p>Ingresa tu edad</p>
+    <input type="number" id="edad" placeholder="Ingresar su edad..." required="">
+    <br>
+    <br>
+                
+    <p>Ingresa tu DNI correctamente</p>
+    <input type="text" id="dni" placeholder="Ingresar DNI..." minlength="3" maxlength="8" required="">
+    <br>
+    <br>  
+
+    <p>Ingrese tu correo electronico: </p>
+    <input type="email" id="correo" placeholder="Escribe tu correo aqui..." minlength="3" maxlength="30" required="">
+    <br>
+    <br>
+
+   
+
+    <p>Ingrese tu Nacionalidad: </p>
+    <input type="text" id="nacionalidad" placeholder="Escribe tu nacionalidad aqui..." minlength="3" maxlength="10" required="">
+    <br>
+    <br>
+
+
+    <p>Seleccione su Genero: </p>
+    <input type="radio" id="hombre" name="genero" value="hombre" required>
+    <label for="masculino">Hombre</label>
+    <input type="radio" id="mujer" name="genero" value="mujer" required>
+    <label for="masculino">Mujer</label>
+    <br>
+    <br>
+    
+       
+    <button>Enviar formulario</button>
+    </form>
+    
+</body>
+</html>
